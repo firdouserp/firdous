@@ -1,0 +1,20 @@
+{
+    "code":"A123",
+    "scode":"S223",
+    "title":"mark industry",
+    "email":"firdouserp@hotmail.com",
+    "contact":"033315752320",
+    "address":"asfafdagadsfgda",
+    "cnic":"42201544245200",
+    "businesstitle" : "marka industry",
+    "nature" : "steels",
+    "active" : "active",
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNSIsImlhdCI6MTYwODM3MTAzMywiZXhwIjoxNjA4NDU3NDMzfQ.Bfeo-ZbCMy8Hwyhtfoo34YBQiELiFGdW4DZRa19cYOI"
+
+}
+  <div style={{
+      position: 'fixed', right: 0, bottom: 0, left: 0, zIndex: 100,
+      padding: 6,
+      backgroundColor: '#efefef',
+      textAlign: 'center',
+    }}><strong>HELLO</strong></div></React.Fragment>
