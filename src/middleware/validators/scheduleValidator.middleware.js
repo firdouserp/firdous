@@ -1,5 +1,4 @@
 const { body, check } = require('express-validator');
-const { NEWDATE } = require('mysql2/lib/constants/types');
 const Role = require('../../utils/userRoles.utils');
 
 
