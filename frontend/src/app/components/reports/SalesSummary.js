@@ -64,7 +64,13 @@ td.title{
 }
 
 td.grouptotal{
-  font-size:15px !important;
+  font-size:12px !important;
+  font-weight:bold;
+  border:1px solid #ccc;
+  text-align:center;
+}
+.text{
+  text-align:right !important;
 }
 
   @media print {
@@ -139,8 +145,8 @@ const CommentGrid = () => {
               <th className="header" align="justify">Unit</th>
               <th className="header" align="justify">Booking Date</th>
               <th className="header" align="justify">Sale Price</th>
-              <th className="header" align="justify">Outstanding</th>
               <th className="header" align="justify">Paymnet Recieved</th>
+              <th className="header" align="justify">Outstanding (Today)</th>
               <th className="header" align="justify">Current Due</th>
               <th className="header" align="justify">Remaining</th>
             </thead>
@@ -151,8 +157,8 @@ const CommentGrid = () => {
               sum_salesprice += booking.sale_price && parseFloat(booking.sale_price) ||0;
               sum_recieved += booking.paymentmade && parseFloat(booking.paymentmade) ||0;
               sum_outstanding+=booking.outstanding && parseFloat(booking.outstanding) || 0;
-              sum_currentdue+=(booking.outstanding && parseFloat(booking.outstanding) ||0)- (booking.paymentmade &&  parseFloat(booking.paymentmade) || 0);
-              sum_remaining+= (booking.sale_price &&  parseFloat(booking.sale_price) ||0) - (booking.paymentmade &&  parseFloat(booking.paymentmade) || 0);
+              sum_currentdue+=(booking.paymentmade &&  parseFloat(booking.paymentmade) || 0) - (booking.outstanding && parseFloat(booking.outstanding) ||0);
+              sum_remaining+= (booking.paymentmade &&  parseFloat(booking.paymentmade) || 0)-(booking.sale_price &&  parseFloat(booking.sale_price) ||0) ;
 
               return (
              <tr>
@@ -175,10 +181,10 @@ const CommentGrid = () => {
                               {formatCurrency(booking.outstanding)}
                           </td>
                           <td className="subheads " align="center"  >
-                              {formatCurrency(booking.outstanding - booking.paymentmade)}
+                              {formatCurrency(booking.paymentmade-booking.outstanding)}
                           </td>
                           <td className="subheads lastcol" align="center"  >
-                              {formatCurrency(booking.sale_price - booking.paymentmade)}
+                              {formatCurrency(booking.paymentmade-booking.sale_price)}
                           </td>
               </tr>
                
@@ -190,12 +196,12 @@ const CommentGrid = () => {
               })}
               <tr>
 
-              <td classnmae ="grouptotal" colspan="3" align="right"> Group Total:</td>
-              <td>{formatCurrency(sum_salesprice)}</td>
-              <td>{formatCurrency(sum_recieved)}</td>
-              <td>{formatCurrency(sum_outstanding)}</td>
-              <td>{formatCurrency(sum_currentdue)}</td>
-              <td>{formatCurrency(sum_remaining)}</td>
+              <td className ="grouptotal text" colspan="3" align="right"> Group Total:</td>
+              <td className ="grouptotal">{formatCurrency(sum_salesprice)}</td>
+              <td className ="grouptotal">{formatCurrency(sum_recieved)}</td>
+              <td className ="grouptotal">{formatCurrency(sum_outstanding)}</td>
+              <td className ="grouptotal">{formatCurrency(sum_currentdue)}</td>
+              <td className ="grouptotal">{formatCurrency(sum_remaining)}</td>
 
               </tr>
         

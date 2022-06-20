@@ -86,16 +86,23 @@ h1{
 }
 
 
+.paticulars{
+  min-width:230px;
+  width: 260px;
 
+
+}
 
 .vou_date{
   min-width:100px;
+  width:80px;
   border-bottom: 1px solid #ddd;
   border-left: 1px solid #ddd;
   text-align:center;
 }
 .vou_no{
-  min-width:120px;
+  width:90px;
+  min-width:70px;
   border-bottom: 1px solid #ddd;
   padding-left: 10px;
   border-left: 1px solid #ddd;
@@ -111,9 +118,12 @@ h1{
 
 .balance{
   border-right: 1px solid #ddd;
+  width:150px;
+  min-width:120px;
 }
-.debit, .credit, .balance{
-    width: 150px;
+.debit, .credit{
+    width: 100px;
+    min-width:80px;
     padding: 10px;
     text-align:right;
     border-bottom: 1px solid #ddd;
@@ -121,7 +131,8 @@ h1{
 }
 .description{
   border-bottom: 1px solid #ddd;
-  min-width:400px;
+  min-width:230px;
+  width:260px;
   border-left: 1px solid #ddd;
   text-align:left;
   padding:5px;
@@ -167,10 +178,10 @@ text-align:right;
 .twocolumn{
   width:200px;
 }
-th.account, th.accountcode,th.accounttitle,th.twocolumn,th.accountdebit,th.accountcredit,th.accountbalance, th.account {
+th.account, th.accountcode,th.accounttitle,th.twocolumn,th.accountdebit,th.accountcredit,th.accountbalance, th.account, th.paticulars {
   border-bottom: 1px solid #ccc;
   font-size: 9pt;
-  background: #e0e0e3;
+  background: #1976d24a;
   height: 25px;
   text-transform: uppercase;
   padding-left: 2px;
@@ -181,8 +192,8 @@ th.account, th.accountcode,th.accounttitle,th.twocolumn,th.accountdebit,th.accou
 .grouptotal{
   font-size:10pt;
   font-weight:bold;
-  --border-bottom:1px solid #ccc;
-  padding-top : 1em;
+  border-top:1px solid #000;
+  height:25px;
   text-align:right;
 }
 .periodlist td{
@@ -204,7 +215,7 @@ th.account, th.accountcode,th.accounttitle,th.twocolumn,th.accountdebit,th.accou
 }
 #section-to-print *{
   font-size:8pt;
-  padding-right:20px;
+  
 }
 
 .subheads{
@@ -268,8 +279,10 @@ th.account, th.accountcode,th.accounttitle,th.twocolumn,th.accountdebit,th.accou
     //margin-top:10px;
     //margin-right:10px;
    
+  } 
+  tbody{
+    margin-right:20px;
   }
-
   th.account, th.accountcode,th.accounttitle,th.twocolumn,td {
         border-right: 1px solid #00000014;
   }
@@ -343,12 +356,12 @@ const CommentGrid = () => {
             </thead>
             <thead>
             
-              <th className="account">Voucher #</th>
-              <th className="accountcode">Voucher Date.</th>
-              <th className="accounttitle">Description</th>
-              <th className="accountbalance">Against</th>
-              <th className="accountdebit">Debit</th>
-              <th className="accountcredit">Credit</th>
+              <th className="account vou_no">Voucher #</th>
+              <th className="accountcode vou_date">Voucher Date.</th>
+              <th className="paticulars">Description</th>
+              <th className="accountbalance balance">Against</th>
+              <th className="accountdebit debit">Debit</th>
+              <th className="account credit">Credit</th>
               
             </thead>
             <tbody>
@@ -391,20 +404,16 @@ const CommentGrid = () => {
                   );
                 }) }
                   <tr>
-                          <td />
-                          <td />
-                          <td className="grouptotal">Group Totals</td>
+                          <td colspan="3"/>
+                        
+                          <td className="grouptotal">Total</td>
 
-                          <td className="grouptotal">
-                            {formatCurrency(coa.total_cr)}
+                          <td colspan="" className="grouptotal" align='right' >
+                            {formatCurrency(Math.abs(coa.total_cr))} 
                           </td>
-
-                          <td className="grouptotal accountdebit">
-                            {formatCurrency(coa.total_dr)}
-                          </td>
-                          <td className="subheads" align='right' >
-                            {formatCurrency(coa.total_cr - coa.total_dr)} 
-                          </td>
+                          { <td colspan="" className="grouptotal" align='right' >
+                            {formatCurrency(Math.abs(coa.total_dr))} 
+                          </td> }
                         </tr>
                         <tr>
                          
